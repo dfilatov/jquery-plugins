@@ -6,7 +6,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
  *
- * @version 1.0.0
+ * @version 1.0.1
  * @requires $.identify
  * @requires $.inherit
  */
@@ -82,7 +82,7 @@ var storageExpando = '__' + +new Date + 'storage',
 
         },
 
-        onFirst : function(e, data, fn, ctx) {
+        once : function(e, data, fn, ctx) {
 
             return this.on(e, data, fn, ctx, { one : true });
 
