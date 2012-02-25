@@ -50,4 +50,18 @@ describe('jquery.memoize specs', function() {
         expect(spy.callCount).toEqual(2);
     });
 
+    it('should be allowed for custom serializer', function() {
+        var spy = jasmine.createSpy(),
+            fn = function() {
+                spy();
+            },
+            memoizedFn = $.memoize(fn, function(args) { return args[0].id });
+
+        memoizedFn({ id : 1 });
+        memoizedFn({ id : 1 });
+        memoizedFn({ id : 2 });
+
+        expect(spy.callCount).toEqual(2);
+    });
+
 });

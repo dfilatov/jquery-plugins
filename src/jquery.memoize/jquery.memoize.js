@@ -12,25 +12,28 @@
 
 (function($) {
 
-var getFnHash = function(ctx, args) {
-    var res = [$.identify(ctx)],
-        i = 0, len = args.length;
+var DELIMITER = '\x0B',
+    /** default serializer */
+    serialize = function(args) {
+        var res = [],
+            i = 0, len = args.length;
 
-    while(i < len) {
-        res.push(typeof args[i], args[i++]);
-    }
+        while(i < len) {
+            res.push(typeof args[i], args[i++]);
+        }
 
-    return res.join('\x0B');
-};
+        return res.join(DELIMITER);
+    };
 
 /**
  * @param {Function} fn original function
+ * @param {Function} [serializeFn] custom argument's serializer
  * @returns Function memoized version of original function
  */
-$.memoize = function(fn) {
+$.memoize = function(fn, serializeFn) {
     var memo = {};
     return function() {
-        var hash = getFnHash(this, arguments);
+        var hash = $.identify(this) + DELIMITER + (serializeFn || serialize)(arguments);
         return hash in memo?
             memo[hash] :
             memo[hash] = fn.apply(this, arguments);
