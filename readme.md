@@ -1,17 +1,17 @@
 jQuery plugins
 ==============
 
-[jQuery identify](https://github.com/dfilatov/jquery-plugins/tree/master/src/jquery.identify)
----------------------------------------------------------------------------------------------
+[$.identify](https://github.com/dfilatov/jquery-plugins/tree/master/src/jquery.identify)
+----------------------------------------------------------------------------------------
 
-jQuery memoize
---------------
+[$.memoize](https://github.com/dfilatov/jquery-plugins/tree/master/src/jquery.memoize)
+--------------------------------------------------------------------------------------
 
-jQuery debounce
----------------
+[$.debounce, $.throttle](https://github.com/dfilatov/jquery-plugins/tree/master/src/jquery.debounce)
+----------------------------------------------------------------------------------------------------
 
-jQuery observable
------------------
+[$.observable](https://github.com/dfilatov/jquery-plugins/tree/master/src/jquery.observable)
+--------------------------------------------------------------------------------------------
 
-jQuery inherit
---------------
+[$.inherit](https://github.com/dfilatov/jquery-plugins/tree/master/src/jquery.inherit)
+--------------------------------------------------------------------------------------
