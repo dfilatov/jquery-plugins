@@ -3,6 +3,10 @@ jQuery inherit plugin
 Plugin provides "class" and inheritance implementation.
 It brings some syntax sugar for "class" declarations, constructors, "super" calls and static members.
 
+Usage
+-----
+    var MyClass = $.inherit([myBaseClass], props, [staticProps]);
+
 Example
 -------
 ```javascript
