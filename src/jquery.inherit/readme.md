@@ -1,6 +1,6 @@
 jQuery inherit plugin
 =====================
-Plugin provides inheritance implementation.
+Plugin provides "class" and inheritance implementation.
 It brings some syntax sugar for "class" declarations, constructors, "super" calls and static members.
 
 Example
@@ -8,7 +8,7 @@ Example
 ```javascript
 // base "class"
 var A = $.inherit(/** @lends A.prototype */{
-    __constructor : function(property) {
+    __constructor : function(property) { // constructor
         this.property = property;
     },
 
@@ -37,18 +37,18 @@ var B = $.inherit(A, /** @lends B.prototype */{
         return this.property + ' of instanceB';
     },
 
-    getType : function() { // overriding + superCall
+    getType : function() { // overriding + "super" call
         return this.__base() + 'B';
     }
 }, /** @lends B */ {
-    staticMethod : function() { // static overriding + superCall
+    staticMethod : function() { // static overriding + "super" call
         return this.__base() + ' of staticB';
     }
 });
 
 var instanceOfB = new B('property');
 
-instanceOfB.getProperty(); // return 'property of instanceB'
-instanceOfB.getType(); // return 'AB'
-B.staticMethod() // return 'staticA of staticB'
+instanceOfB.getProperty(); // returns 'property of instanceB'
+instanceOfB.getType(); // returns 'AB'
+B.staticMethod(); // returns 'staticA of staticB'
 ```

@@ -19,4 +19,4 @@ Implementation of observable pattern
 
 [$.inherit](https://github.com/dfilatov/jquery-plugins/tree/master/src/jquery.inherit)
 --------------------------------------------------------------------------------------
-Implementation of class emulation
+Implementation of "class" declarations and inheritance pattern
