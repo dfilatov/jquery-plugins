@@ -9,7 +9,7 @@ describe('jquery.observable specs', function() {
         fn3 = jasmine.createSpy();
     });
 
-    describe('on, once and trigger methods spces', function() {
+    describe('on, once and trigger methods specs', function() {
         it('should be valid callbacks called', function() {
             observable.on('e1', fn1);
             observable.on('e1', fn2);
@@ -89,6 +89,22 @@ describe('jquery.observable specs', function() {
             expect(fn1).not.toHaveBeenCalled();
             expect(fn2).not.toHaveBeenCalled();
             expect(fn3).not.toHaveBeenCalled();
+        });
+
+        it('should be expected default target', function() {
+            observable.on('e1', fn1);
+            observable.trigger('e1');
+
+            expect(fn1.mostRecentCall.args[0].target).toBe(observable);
+        });
+
+        it('should be expected custom target', function() {
+            var target = {},
+                e = $.Event('e1', { target : target });
+            observable.on('e1', fn1);
+            observable.trigger(e);
+
+            expect(fn1.mostRecentCall.args[0].target).toBe(target);
         });
     });
 
