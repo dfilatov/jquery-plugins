@@ -6,7 +6,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
  *
- * @version 1.0.1
+ * @version 1.0.2
  * @requires $.identify
  * @requires $.inherit
  */
@@ -41,6 +41,7 @@ var storageExpando = '__' + +new Date + 'storage',
          */
         on : function(e, data, fn, ctx, _special) {
 
+            var _this = this;
             if(typeof e == 'string') {
                 if($.isFunction(data)) {
                     ctx = fn;
@@ -49,13 +50,13 @@ var storageExpando = '__' + +new Date + 'storage',
                 }
 
                 var id = getFnId(fn, ctx),
-                    storage = this[storageExpando] || (this[storageExpando] = {}),
+                    storage = _this[storageExpando] || (_this[storageExpando] = {}),
                     eList = e.split(' '),
                     i = 0,
                     eStorage;
 
                 while(e = eList[i++]) {
-                    e = this.buildEventName(e);
+                    e = _this.buildEventName(e);
                     eStorage = storage[e] || (storage[e] = { ids : {}, list : {} });
 
                     if(!(id in eStorage.ids)) {
@@ -72,13 +73,12 @@ var storageExpando = '__' + +new Date + 'storage',
                     }
                 }
             } else {
-                var _this = this;
                 $.each(e, function(e, fn) {
                     _this.on(e, fn, data, _special);
                 });
             }
 
-            return this;
+            return _this;
 
         },
 
@@ -97,15 +97,16 @@ var storageExpando = '__' + +new Date + 'storage',
          */
         un : function(e, fn, ctx) {
 
+            var _this = this;
             if(typeof e == 'string' || typeof e == 'undefined') {
-                var storage = this[storageExpando];
+                var storage = _this[storageExpando];
                 if(storage) {
                     if(e) { // если передан тип события
                         var eList = e.split(' '),
                             i = 0,
                             eStorage;
                         while(e = eList[i++]) {
-                            e = this.buildEventName(e);
+                            e = _this.buildEventName(e);
                             if(eStorage = storage[e]) {
                                 if(fn) {  // если передан конкретный обработчик
                                     var id = getFnId(fn, ctx),
@@ -133,22 +134,21 @@ var storageExpando = '__' + +new Date + 'storage',
                                         delete ids[id];
                                     }
                                 } else {
-                                    delete this[storageExpando][e];
+                                    delete _this[storageExpando][e];
                                 }
                             }
                         }
                     } else {
-                        delete this[storageExpando];
+                        delete _this[storageExpando];
                     }
                 }
             } else {
-                var _this = this;
                 $.each(e, function(e, fn) {
                     _this.un(e, fn, ctx);
                 });
             }
 
-            return this;
+            return _this;
 
         },
 
@@ -190,7 +190,7 @@ var storageExpando = '__' + +new Date + 'storage',
                 }
             }
 
-            return this;
+            return _this;
 
         }
 
