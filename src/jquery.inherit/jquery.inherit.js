@@ -6,7 +6,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
  *
- * @version 1.3.3
+ * @version 1.3.4
  */
 
 (function($) {
@@ -14,7 +14,12 @@
 var hasIntrospection = (function(){_}).toString().indexOf('_') > -1,
     needCheckProps = $.browser.msie, // fucking ie hasn't toString, valueOf in for
     specProps = needCheckProps? ['toString', 'valueOf'] : null,
-    emptyBase = function() {};
+    emptyBase = function() {},
+    objCreate = Object.create || function(ptp) {
+        var inheritance = function() {};
+        inheritance.prototype = ptp;
+        return new inheritance();
+    };
 
 function override(base, result, add) {
 
@@ -84,9 +89,8 @@ $.inherit = function() {
 
     $.extend(result, base);
 
-    var inheritance = function() {},
-        basePtp = inheritance.prototype = base.prototype,
-        resultPtp = result.prototype = new inheritance();
+    var basePtp = base.prototype,
+        resultPtp = result.prototype = objCreate(basePtp);
 
     resultPtp.__self = resultPtp.constructor = result;
 
