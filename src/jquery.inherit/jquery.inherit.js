@@ -60,6 +60,11 @@ function override(base, result, add) {
                 return result;
             };
 
+            for (var key in prop) {
+                result[name][key] = prop[key];
+                delete prop[key];
+            }
+
         }
         else {
             result[name] = prop;
