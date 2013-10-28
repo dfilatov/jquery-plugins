@@ -6,12 +6,12 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
  *
- * @version 1.3.5
+ * @version 1.3.6
  */
 
 (function($) {
 
-var hasIntrospection = (function(){_}).toString().indexOf('_') > -1,
+var hasIntrospection = (function(){'_';}).toString().indexOf('_') > -1,
     emptyBase = function() {},
     objCreate = Object.create || function(ptp) {
         var inheritance = function() {};
