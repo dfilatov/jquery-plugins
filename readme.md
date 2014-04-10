@@ -1,3 +1,5 @@
+THIS PROJECT IS OUTDATED AND IS NOT SUPPORTED. USE IT AT YOUR OWN RISK.
+
 jQuery plugins
 ==============
 
