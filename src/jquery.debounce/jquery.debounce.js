@@ -27,18 +27,26 @@ $.extend({
         }
 
         var timer;
+        var lastInvokeTime = 0;
+
+        function invoke(time, args) {
+            if (time - lastInvokeTime > timeout) {
+                fn.apply(this, args);
+                lastInvokeTime = time;
+            }
+        }
 
         return function() {
 
-            var args = arguments;
+            var time = new Date().valueOf();
             ctx = ctx || this;
 
-            invokeAsap && !timer && fn.apply(ctx, args);
+            invokeAsap && !timer && invoke.call(ctx, time, arguments);
 
             clearTimeout(timer);
 
             timer = setTimeout(function() {
-                invokeAsap || fn.apply(ctx, args);
+                invoke.call(ctx, time, arguments);
                 timer = null;
             }, timeout);
 
