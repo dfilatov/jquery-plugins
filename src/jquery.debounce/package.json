@@ -1,0 +1,28 @@
+{
+  "name": "jquery-debounce-throttle",
+  "version": "1.0.6",
+  "description": "jQuery debounce and throttle functions",
+  "main": "jquery.debounce.js",
+  "scripts": {},
+  "homepage": "https://github.com/dfilatov/jquery-plugins#readme",
+  "readme": "https://github.com/dfilatov/jquery-plugins/blob/master/readme.md",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/dfilatov/jquery-plugins.git"
+  },
+  "keywords": [
+      "debounce",
+      "jquery",
+      "throttle",
+      "jquery-debounce",
+      "jquery-throttle"
+  ],
+  "dependencies": {
+      "jquery": ">=1.7"
+  },
+  "author": {
+      "name": "Filatov Dmitry",
+      "email": "alpha@zforms.ru"
+  },
+  "license": "MIT"
+}
